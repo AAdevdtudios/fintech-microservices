@@ -1,0 +1,13 @@
+testingZoo.yml
+payment_gateway/.env
+payment_gateway/.vscode
+payment_gateway/gateway_venv
+payment_gateway/core/__pycache__
+auth_service/.vscode
+auth_service/auth_venv
+auth_service/.env
+auth_service/db.sqlite3
+auth_service/authService/__pycache__
+auth_service/authService/migrations
+auth_service/core/__pycache__
+

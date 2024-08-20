@@ -1,5 +1,5 @@
-from ninja.schema import Schema, BaseModel
-from pydantic import EmailStr, field_validator
+from ninja.schema import Schema
+from pydantic import EmailStr, field_validator, BaseModel
 import re
 from ninja import Field
 from ninja.errors import ValidationError
@@ -105,6 +105,9 @@ class AuthResponse(Schema):
     class Config:
         from_attributes = True
 
+class KafkaMessageModel(BaseModel):
+    actions: str
+    data: dict
 
 class ResponserMessage(Schema):
     status: int

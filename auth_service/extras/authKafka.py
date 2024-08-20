@@ -1,8 +1,8 @@
-from kafka import KafkaConsumer, KafkaProducer
+from kafka import KafkaConsumer
+import json
 
 PRODUCERTOPIC="AuthUser"
 
-producer = KafkaProducer(bootstrap_servers='localhost:29092')
 consumer = KafkaConsumer(PRODUCERTOPIC, bootstrap_servers='localhost:29092')
 
 while True:

@@ -136,6 +136,25 @@ To view the logs:
 docker-compose logs -f
 ```
 
+## Flow Diagram of Microservice
+
+![A detailed flow diagram of a microservice architecture for a fintech application](img/microservicesFlow.webp)
+
+Here is the flowchart illustrating your fintech microservice system:
+
+1. **User Authenticated by Auth Service**: The process starts with the Auth service authenticating the user.
+2. **User Created → Signal Triggered**: Once a user is created, a Django signal is triggered.
+3. **Kafka → Third-Party (Payment Gateway)**: The signal triggers Kafka, which informs the Third-party service handling payment gateway operations.
+4. **Customer Created in Payment Gateway**: The Third-party service creates a customer in the chosen payment gateway.
+5. **Prompt User for BVN Verification**: The user is prompted for BVN verification via the Third-party service.
+6. **Validate BVN via Payment Gateway**: The BVN is validated through the payment gateway.
+7. **BVN Verified → Generate Wallet Address**: Once the BVN is verified, the wallet address is generated.
+8. **Kafka → Wallet Service with Details**: The generated wallet details and customer ID are sent to the Wallet service via Kafka.
+9. **Save Account Details (Auth Service)**: The Wallet service saves the account details with a zero balance in the Auth service.
+10. **Analytics Producer Logs Errors**: The Analytics producer is triggered only if there are errors.
+
+This flowchart visually outlines the sequence and communication between services.
+
 ## Contributing
 
 Feel free to fork this repository and submit pull requests for new features, bug fixes, or improvements. Contributions are always welcome!

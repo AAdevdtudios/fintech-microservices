@@ -2,15 +2,14 @@ import json
 from kafka import KafkaConsumer, KafkaProducer
 import random
 
-PRODUCERTOPIC="gateway"
+PRODUCERTOPIC="Gateway"
 
-producer = KafkaProducer(bootstrap_servers='localhost:29092')
-consumer = KafkaConsumer(PRODUCERTOPIC, bootstrap_servers='localhost:29092')
-
+# producer = KafkaProducer(bootstrap_servers='localhost:29092')
+consumer = KafkaConsumer(PRODUCERTOPIC, bootstrap_servers='localhost:9092',value_deserializer=lambda v: json.loads(v.decode("utf-8")))
+print("Ready to listen to server")
 while True:
     for message in consumer:
-        print(message)
+        print(message.value)
         # Consume the information to create a customer in the gateway
         # request(url, headers)
-        rd = random.randint(10000000000,99999999999) # This would simulate customers number and save in the user table
-        producer.send("AuthUser", value={}, )
+        # producer.send("AuthUser", value={}, )
